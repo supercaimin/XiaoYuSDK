@@ -1,0 +1,30 @@
+{
+   "name": "syoubin/XiaoYuSDK",
+   "description": "小鱼易连云端REST接口的PHP实现",
+   "keywords": [
+      "小鱼易连",
+      "SDK",
+      "云视频"
+   ],
+   "minimum-stability": "stable",
+   "authors": [
+      {
+         "name": "caimin",
+         "email": "caimin@ibokun.com"
+      },
+      {
+         "name": "liaoxiangting",
+         "email": "liaoxiangting@ibokun.com"
+      }
+   ],
+   "require": {
+
+      "php": ">=5.4"
+   },
+   "license": "Apache License Version 2.0",
+   "autoload": {
+      "psr-4": {
+         "XiaoYuSDK\\": "src/"
+      }
+   }
+}
