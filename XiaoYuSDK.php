@@ -1,7 +1,14 @@
 <?php
-<<<COPYRIGHT
-
-COPYRIGHT;
+// +----------------------------------------------------------------------
+// | XiaoYuSDK
+// +----------------------------------------------------------------------
+// | Copyright (c) 2017 http://www.ibokun.com All rights reserved.
+// +----------------------------------------------------------------------
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// +----------------------------------------------------------------------
+// | Author: liaoxiangting v1.0 <liaoxiangting@ibokun.com>
+// |  caimin v1.1 <caimin@ibokun.com>
+// +----------------------------------------------------------------------
 
 class XiaoYuSDK
 {
@@ -25,11 +32,11 @@ class XiaoYuSDK
     /**
      * @var string 企业id
      */
-    private $enterprise_id = 'e2b8b52b994d8376ea23b7be4965467423180ae2';
+    private $enterprise_id = 'xxxxxxxx';
     /**
      * @var string 企业token
      */
-    private $token = '45d947778e24ea6af9c99b287b34ead991c87241af426120484b2cac2691d7a2';
+    private $token = 'xxxxx';
     /**
      * @var string API接口地址
      */
@@ -401,7 +408,7 @@ class XiaoYuSDK
     public function get_registered_callbacks()
     {
         $uri                  = 'callbacks';
-        $result               = $this->send($uri, self::METHOD_GET, NULL);
+        $result               = $this->send($uri, self::METHOD_GET, NULL, TRUE);
         return $result;
     }
 
@@ -418,16 +425,16 @@ class XiaoYuSDK
         return $result;
     }
 
-    /**
-     * @param $title
-     * @param $startTime
-     * @param $endTime
-     * @param $participants
-     * @param $conferenceNumber
-     * @param $address
-     * @param $details
-     * @param $autoInvite
-     * @param $meetingRoomType
+    /**预约一条新的会议
+     * @param $title 	会议标题，必填参数
+     * @param $startTime 会议开始时间，毫秒数，必填参数
+     * @param $endTime 会议结束时间，毫秒数，必填参数
+     * @param $participants 参加会议的小鱼号集合，必填参数，至少有一个小鱼号
+     * @param $conferenceNumber 虚拟云会议室号，可选参数
+     * @param $address 会议地址，可选参数
+     * @param $details 会议描述，可选参数
+     * @param $autoInvite 开会时，是否自动呼叫小鱼终端入会。默认为0，不自动；为1，自动。可选参数
+     * @param $meetingRoomType 预约使用的会议室类型，必填参数，1 为系统随机生成，这是conferenceNumber可不填；2 为用户指定号码，这是conferenceNumber必填
      * @return array
      */
     public function create_meeting_reminder($title, $startTime, $endTime, $participants, $conferenceNumber, $address, $details, $autoInvite, $meetingRoomType)
@@ -441,15 +448,15 @@ class XiaoYuSDK
         return $result;
     }
 
-    /**
-     * @param $title
-     * @param $startTime
-     * @param $endTime
-     * @param $participants
-     * @param $conferenceNumber
-     * @param $address
-     * @param $details
-     * @param $autoInvite
+    /**修改会议
+     * @param $title 	会议标题，必填参数
+     * @param $startTime 会议开始时间，毫秒数，必填参数
+     * @param $endTime 会议结束时间，毫秒数，必填参数
+     * @param $participants 参加会议的小鱼号集合，必填参数，至少有一个小鱼号
+     * @param $conferenceNumber 虚拟云会议室号，可选参数
+     * @param $address 会议地址，可选参数
+     * @param $details 会议描述，可选参数
+     * @param $autoInvite 开会时，是否自动呼叫小鱼终端入会。默认为0，不自动；为1，自动。可选参数
      * @return array
      */
 
@@ -464,15 +471,18 @@ class XiaoYuSDK
         return $result;
     }
 
+    /**
+     *查看全体成员及会议状态
+     * @param $meetingRoomNumber
+     * @return array
+     */
 
-    /*public function get_meeting_status($meetingRoomNumber)
+    public function get_meeting_status($callNumber)
     {
-        $data                 = array();
-        $data['enterpriseId'] = $this->enterprise_id;
-        $uri                  = 'conferenceControl/' . $meetingRoomNumber . '/meetingStatus';
-        $result               = $this->send($uri, self::METHOD_GET, $data);
+        $uri                  = 'conferenceControl/' . $callNumber . '/meetingStatus';
+        $result               = $this->send($uri, self::METHOD_GET, NULL, TRUE);
         return $result;
-    }*/
+    }
 
     /**
      * 发送接口数据
@@ -506,7 +516,7 @@ class XiaoYuSDK
      * @param null|array $param  请求参数
      * @return string
      */
-    private function signature($uri, $method, &$param = NULL, $eid_fix = false)
+    private function signature($uri, $method, &$param = NULL, $eid_fix = FALSE)
     {
         $param = empty($param) || !is_array($param) ? array() : $param;
         foreach ($param as $key => $val)
