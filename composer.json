@@ -18,8 +18,7 @@
       }
    ],
    "require": {
-
-      "php": ">=5.4"
+      "php": ">=5.3"
    },
    "license": "Apache License Version 2.0",
    "autoload": {
