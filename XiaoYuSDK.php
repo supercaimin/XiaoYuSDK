@@ -32,11 +32,11 @@ class XiaoYuSDK
     /**
      * @var string 企业id
      */
-    private $enterprise_id = 'xxxxxxxx';
+    private $enterprise_id = 'your enterprise_id';
     /**
      * @var string 企业token
      */
-    private $token = 'xxxxx';
+    private $token = 'your token';
     /**
      * @var string API接口地址
      */
@@ -47,33 +47,7 @@ class XiaoYuSDK
      */
     public function __construct()
     {
-        //$result = $this->get_meeting_status('123456789');
-        //var_dump($result);
-        //$result = $this->get_live_videos(524209, '910088157943');
-        //var_dump($result);
-        //$result = $this->get_nemos();
-        //var_dump($result);
-        //$result = $this->remove_live(524209, 'ff808081581238ae0158298f9aea2d40');
-        //var_dump($result);
-        //$result = $this->get_live(524209, 'ff808081581238ae015829844fb12c55');
-        //var_dump($result);
-        //$result = $this->get_live_videos(524209, 'ff808081581238ae01583e454ae32940');
-        //var_dump($result);
-        $result = $this->get_users();
-       	var_dump($result);
-        $result = $this->get_nemos();
-        var_dump($result);
-        $result = $this->create_meeting('Pig Zhu 的会议室', time(), time() + 3600 * 6, 5, TRUE, '123456');
-        var_dump($result);
-        //$result = $this->create_live(524209, 'Pig Zhu 的直播 ' . date('Y-m-d H:i:s'), '910030701173', time(), time() + 3600 * 6, 'detail', TRUE, TRUE, 'location');
-        //var_dump($result);
-
-        $result = $this->register_callback('LiveStatus', 'http://182.61.56.223/debug/');
-        var_dump($result);
-        $result = $this->get_registered_callbacks();
-        var_dump($result);
-        $result = $this->create_meeting_reminder('测试会议', time() + 3600 * 2, time() + 3600 * 6, ['234157','524209'], '918626467882', '南京', '1029d', 1, 2);
-        var_dump($result);
+  		parent::__construct();
 
     }
 
