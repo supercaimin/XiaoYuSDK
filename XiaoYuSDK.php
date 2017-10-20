@@ -32,11 +32,11 @@ class XiaoYuSDK
     /**
      * @var string 企业id
      */
-    private $enterprise_id = 'your enterprise_id';
+    private $enterprise_id = '';
     /**
      * @var string 企业token
      */
-    private $token = 'your token';
+    private $token = '';
     /**
      * @var string API接口地址
      */
@@ -45,10 +45,13 @@ class XiaoYuSDK
     /**
      * XY_Live constructor.
      */
-    public function __construct()
+    public function __construct($enterprise_id, $token)
     {
-  		parent::__construct();
-
+        if (empty($enterprise_id || empty($token))){
+            throw new RuntimeException('enterprise_id or token been required.');
+        }
+        $this->enterprise_id = $enterprise_id;
+        $this->token = $token;
     }
 
     /**
